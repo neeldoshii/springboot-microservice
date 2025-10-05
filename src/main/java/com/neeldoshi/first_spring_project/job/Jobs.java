@@ -1,13 +1,13 @@
 package com.neeldoshi.first_spring_project.job;
 
 public class Jobs {
-    private Long id;
+    private int id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
 
-    public Jobs(Long id, String title, String description, String minSalary, String maxSalary) {
+    public Jobs(int id, String title, String description, String minSalary, String maxSalary) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -15,11 +15,11 @@ public class Jobs {
         this.maxSalary = maxSalary;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
