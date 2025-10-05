@@ -1,5 +1,6 @@
 package com.neeldoshi.first_spring_project.job;
 
+import com.neeldoshi.first_spring_project.JobRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -7,28 +8,41 @@ import java.util.List;
 
 @Service
 public class JobServiceImpl implements JobService{
-    List<Jobs> jobs = new ArrayList<>();
-    int id = 1;
+
+    JobRepository jobRepository;
+    public JobServiceImpl(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
+
+//    List<Jobs> jobs = new ArrayList<>();
+//    int id = 1;
     @Override
     public List<Jobs> findAll() {
-        return jobs;
+        return jobRepository.findAll();
+//        return jobs;
     }
 
     @Override
     public void createJob(Jobs job) {
+        jobRepository.save(job);
+        /*
         System.out.println(job.getId());
         System.out.println(jobs);
         job.setId(id++);
         jobs.add(job);
+
+         */
     }
 
     @Override
-    public Jobs getJobById(int id) {
-        for (Jobs job : jobs){
+    public Jobs getJobById(Integer id) {
+        return jobRepository.findById(id).orElse(null);
+        /*for (Jobs job : jobs){
             if (job.getId() == id){
                 return job;
             }
         }
         return null;
+         */
     }
 }

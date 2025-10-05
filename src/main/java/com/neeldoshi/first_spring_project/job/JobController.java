@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
-    private List<Jobs> jobs = new ArrayList<>();
+    //private List<Jobs> jobs = new ArrayList<>();
     private JobService jobService;
 
     public JobController(JobService jobService) {
@@ -32,7 +32,7 @@ public class JobController {
     }
 //    @RequestMapping(name = "getJobsById", params = "{id}", method = RequestMethod.GET)
     @GetMapping("/getJobsById/{id}")
-    public ResponseEntity<Jobs> getSpecificJob(@PathVariable int id){
+    public ResponseEntity<Jobs> getSpecificJob(@PathVariable Integer id){
         Jobs job = jobService.getJobById(id);
         if (job !=null){
             return new ResponseEntity<>(job, HttpStatus.OK);

@@ -1,13 +1,22 @@
 package com.neeldoshi.first_spring_project.job;
 
+import com.neeldoshi.first_spring_project.JobRepository;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Jobs")
 public class Jobs {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
 
-    public Jobs(int id, String title, String description, String minSalary, String maxSalary) {
+    public Jobs() {}
+
+    public Jobs(Integer id, String title, String description, String minSalary, String maxSalary) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -15,11 +24,11 @@ public class Jobs {
         this.maxSalary = maxSalary;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -8,5 +8,5 @@ public interface JobService {
 
     void createJob(Jobs job);
 
-    Jobs getJobById(int id);
+    Jobs getJobById(Integer id);
 }
