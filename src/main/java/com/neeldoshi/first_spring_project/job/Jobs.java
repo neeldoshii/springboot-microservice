@@ -1,6 +1,7 @@
 package com.neeldoshi.first_spring_project.job;
 
-import com.neeldoshi.first_spring_project.JobRepository;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.neeldoshi.first_spring_project.companies.Companies;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,34 @@ public class Jobs {
     private String description;
     private String minSalary;
     private String maxSalary;
+
+    @Transient  // This field won't be persisted to database
+    private Integer companyId;
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Companies company;
+
+    public Jobs(Companies companies) {
+        this.company = companies;
+    }
+
+    @JsonIgnore
+    public Companies getCompanies() {
+        return company;
+    }
+
+    public void setCompanies(Companies companies) {
+        this.company = companies;
+    }
 
     public Jobs() {}
 
