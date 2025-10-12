@@ -2,6 +2,7 @@ package com.neeldoshi.first_spring_project.job;
 
 import com.neeldoshi.first_spring_project.companies.Companies;
 import com.neeldoshi.first_spring_project.companies.CompanyServices;
+import com.neeldoshi.first_spring_project.dto.JobRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,16 +30,30 @@ public class JobController {
 
 //    @RequestMapping(name = "createJobs" , method = RequestMethod.POST)
     @PostMapping("/createJobs")
-    public String createJob(@RequestBody Jobs jobRequest){
+    public String createJob(@RequestBody JobRequest jobRequest){
+        // Debug logging to see what we're receiving
+        System.out.println("=== DEBUG INFO ===");
+        System.out.println("JobRequest object: " + jobRequest);
+        System.out.println("CompanyId: " + jobRequest.getCompanyId());
+        System.out.println("Title: " + jobRequest.getTitle());
+        System.out.println("Description: " + jobRequest.getDescription());
+        System.out.println("MinSalary: " + jobRequest.getMinSalary());
+        System.out.println("MaxSalary: " + jobRequest.getMaxSalary());
+        System.out.println("==================");
         Companies company = companyServices.getCompanyById(jobRequest.getCompanyId());
+
+        if (company == null) {
+            return "Error: Company not found with ID " + jobRequest.getCompanyId();
+        }
+
         Jobs job = new Jobs();
 //        job.setCompanies(jobRequest.getCompanies());
-        job.setId(jobRequest.getId());
         job.setTitle(jobRequest.getTitle());
         job.setDescription(jobRequest.getDescription());
         job.setMinSalary(jobRequest.getMinSalary());
         job.setMaxSalary(jobRequest.getMaxSalary());
-        job.setCompanies(company);
+//        job.setCompany(companyServices.getCompanyById(jobRequest.getCompanyId()));
+        job.setCompany(company);
 
 
         jobService.createJob(job);

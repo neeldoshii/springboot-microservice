@@ -14,32 +14,22 @@ public class Jobs {
     private String description;
     private String minSalary;
     private String maxSalary;
-
-    @Transient  // This field won't be persisted to database
-    private Integer companyId;
-
-    public Integer getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Integer companyId) {
-        this.companyId = companyId;
-    }
+    
 
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Companies company;
 
-    public Jobs(Companies companies) {
-        this.company = companies;
+    public Jobs(Companies company) {
+        this.company = company;
     }
 
     @JsonIgnore
-    public Companies getCompanies() {
+    public Companies getCompany() {
         return company;
     }
 
-    public void setCompanies(Companies companies) {
+    public void setCompany(Companies companies) {
         this.company = companies;
     }
 

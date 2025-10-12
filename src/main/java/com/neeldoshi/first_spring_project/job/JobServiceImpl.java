@@ -1,5 +1,6 @@
 package com.neeldoshi.first_spring_project.job;
 
+import com.neeldoshi.first_spring_project.companies.CompaniesRepository;
 import com.neeldoshi.first_spring_project.companies.CompanyServices;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +10,11 @@ import java.util.List;
 public class JobServiceImpl implements JobService{
 
     private JobRepository jobRepository;
-    private CompanyServices companyServices;
+    private CompaniesRepository companiesRepository;
 
-    public JobServiceImpl(JobRepository jobRepository, CompanyServices companyServices) {
-        this.companyServices = companyServices;
+    public JobServiceImpl(JobRepository jobRepository, CompaniesRepository companiesRepository) {
         this.jobRepository = jobRepository;
+        this.companiesRepository = companiesRepository;
     }
 
     //    List<Jobs> jobs = new ArrayList<>();
@@ -50,4 +51,6 @@ public class JobServiceImpl implements JobService{
         return null;
          */
     }
+
+
 }
